@@ -18,6 +18,8 @@ public class WindowCollector {
     static JFrame parent;
     static JLabel pLabel;
 
+    static int TLX, TLY, BRX, BRY;
+
     public static void getWindowCoordinates(JFrame pFrame, JLabel label) {
         parent = pFrame;
         pLabel = label;
@@ -35,5 +37,30 @@ public class WindowCollector {
         f.setUndecorated(true);
         f.setOpacity(0.10f);
         f.setVisible(true);
+    }
+    public static int[][][] bi2int(BufferedImage bi) {
+        int intimg[][][] = new int[3][bi.getHeight()][bi.getWidth()];
+        for (int y = 0; y < bi.getHeight(); ++y) {
+            for (int x = 0; x < bi.getWidth(); ++x) {
+                int argb = bi.getRGB(x, y);
+                intimg[0][y][x] = (argb >> 16) & 0xFF; // -- RED
+                intimg[1][y][x] = (argb >> 8) & 0xFF; // -- GREEN
+                intimg[2][y][x] = (argb >> 0) & 0xFF; // -- BLUE
+            }
+        }
+        return intimg;
+    }
+
+    public static BufferedImage int2bi(int[][][] intimg) {
+        BufferedImage bi = new BufferedImage(intimg[0][0].length, intimg[0].length, BufferedImage.TYPE_INT_RGB);
+        for (int y = 0; y < bi.getHeight(); ++y) {
+            for (int x = 0; x < bi.getWidth(); ++x) {
+                int rgb = (intimg[0][y][x] << 16) |
+                        (intimg[1][y][x] << 8) |
+                        (intimg[2][y][x] << 0);
+                bi.setRGB(x, y, rgb);
+            }
+        }
+        return bi;
     }
 }
