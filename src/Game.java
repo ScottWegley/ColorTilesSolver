@@ -31,4 +31,26 @@ public class Game {
             return rgbKey;
         }
     }
+
+    /**
+     * Function to combine RGB values into one unique number.
+     * Inspired by https://stackoverflow.com/a/16697893.
+     * @param _r The R value of our color.
+     * @param _g The G value of our color.
+     * @param _b The B value of our color.
+     * @return A unique number with an R, G, & B encode inside.
+     * Use {@link #rgbDecode(int _key)} to get the R, G, & B values from the key.
+     */
+    public static int rgbEncode(int _r, int _g, int _b) {
+        return (_r << 20) | (_g << 10) | _b;
+    }
+
+    /**
+     * Function to retrieve RGB values from a unique key.
+     * @param _key The combined RGB values, unique for every combination.
+     * @return An array of integers in the order R,G,B.
+     */
+    public static int[] rgbDecode(int _key){
+        return new int[]{_key >> 20, (_key >> 10) & 0x3FF, _key & 0x3FF};
+    }
 }
