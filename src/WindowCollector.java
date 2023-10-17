@@ -30,6 +30,8 @@ public class WindowCollector {
         JFrame f = new JFrame("Glass Pane");
         JPanel glass = (JPanel) f.getGlassPane();
 
+        PointCollecter pc = new PointCollecter(f);
+        glass.addMouseListener(pc);
 
         glass.setVisible(true);
         f.setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
