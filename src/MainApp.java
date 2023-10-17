@@ -24,6 +24,7 @@ class MainApp {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setState(JFrame.ICONIFIED);
+                WindowCollector.getWindowCoordinates(frame, pLabel);
             }
             
         });
