@@ -99,8 +99,34 @@ public class WindowCollector {
 }
 
 class PointCollecter implements MouseListener {
+
+    int tlX = 0;
+    int tlY = 0;
+
+    int brX = 0;
+    int brY = 0;
+
+    JFrame frame;
+
+    public PointCollecter(JFrame fr) {
+        frame = fr;
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
+        if (tlX == 0 && tlY == 0) {
+            tlX = e.getX();
+            tlY = e.getY();
+        } else if (brX == 0 && brY == 0) {
+            brX = e.getX();
+            brY = e.getY();
+            try {
+                WindowCollector.clicksCollected(frame, new int[] { tlX, tlY, brX, brY });
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
+        }
     }
 
     @Override
