@@ -38,6 +38,24 @@ public class WindowCollector {
         f.setOpacity(0.10f);
         f.setVisible(true);
     }
+
+    private static void takeScreenshot(String name) throws Exception {
+        Robot r = new Robot();
+
+        String path = "C:\\Code\\ColorTilesSolver\\src\\" + name + ".jpg";
+        Rectangle capture = new Rectangle(TLX, TLY, BRX - TLX, BRY - TLY);
+        BufferedImage Image = r.createScreenCapture(capture);
+        ImageIO.write(Image, "jpg", new File(path));
+    }
+
+    public static int[][][] takeScreenshot() throws Exception {
+        Robot r = new Robot();
+
+        Rectangle capture = new Rectangle(TLX, TLY, BRX - TLX, BRY - TLY);
+        BufferedImage Image = r.createScreenCapture(capture);
+        return bi2int(Image);
+    }
+
     public static int[][][] bi2int(BufferedImage bi) {
         int intimg[][][] = new int[3][bi.getHeight()][bi.getWidth()];
         for (int y = 0; y < bi.getHeight(); ++y) {
