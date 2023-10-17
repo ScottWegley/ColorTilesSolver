@@ -1,13 +1,19 @@
 package src;
 
 public class Game {
-    public static final int WIDTH = 23;
-    public static final int HEIGHT = 15;
+    private int WIDTH = 23;
+    private int HEIGHT = 15;
 
     private ColorTile[][] board;
 
     public Game() {
+        board = new ColorTile[WIDTH][HEIGHT];
+    }
 
+    public Game(int _W, int _H){
+        WIDTH = _W;
+        HEIGHT = _H;
+        board = new ColorTile[WIDTH][HEIGHT];
     }
 
     /**
@@ -61,5 +67,9 @@ public class Game {
      */
     public static int[] rgbDecode(int _key){
         return new int[]{_key >> 20, (_key >> 10) & 0x3FF, _key & 0x3FF};
+    }
+
+    public static void main(String[] args) {
+        
     }
 }
