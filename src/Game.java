@@ -1,6 +1,15 @@
 package src;
 
 public class Game {
+    public static final int WIDTH = 23;
+    public static final int HEIGHT = 15;
+
+    private ColorTile[][] board;
+
+    public Game() {
+
+    }
+
     /**
      * This stores the possible values of any filled tile.
      */
