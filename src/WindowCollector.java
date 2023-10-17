@@ -81,6 +81,19 @@ public class WindowCollector {
         }
         return bi;
     }
+
+    static void clicksCollected(JFrame f, int[] points) throws Exception {
+        pLabel.setText("Top Left: (" + points[0] + ", " + points[1] + ") | Bottom Right: (" + points[2] + ", "
+                + points[3] + ")");
+        TLX = points[0];
+        TLY = points[1];
+        BRX = points[2];
+        BRY = points[3];
+        takeScreenshot("preview");
+        f.setVisible(false);
+        f.dispose();
+        parent.setState(JFrame.NORMAL);
+    }
 }
 
 class PointCollecter implements MouseListener {
